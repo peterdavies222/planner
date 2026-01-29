@@ -48,55 +48,61 @@ export default function ScheduleElement({ plan, dispatch }) {
   return (
     <article className="schedule__element">
       {!editing ? (
-        <div>
-          <p className="schedule__element__time">
-            {plan.hour}:{plan.minute.padStart(2, "0")}
-            {plan.ampm.toUpperCase()}
-          </p>
-          <p className="schedule__element__title">{plan.title}</p>
-        </div>
-      ) : (
-        <div>
+        <>
           <div>
-            <select
-              name="hour"
-              id="hour"
-              value={hourValue}
-              onChange={(e) => setHourValue(e.target.value)}
-            >
-              {hourEls}
-            </select>
-            <select
-              name="minute"
-              id="minute"
-              value={minuteValue}
-              onChange={(e) => setMintueValue(e.target.value)}
-            >
-              {minutesEls}
-            </select>
-            <select
-              name="ampm"
-              id="ampm"
-              value={amPmValue}
-              onChange={(e) => setAmPmValue(e.target.value)}
-            >
-              <option value="am">AM</option>
-              <option value="pm">PM</option>
-            </select>
+            <p className="schedule__element__time">
+              {plan.hour}:{plan.minute.padStart(2, "0")}
+              {plan.ampm.toUpperCase()}
+            </p>
+            <p className="schedule__element__title">{plan.title}</p>
           </div>
-          <input
-            type="text"
-            value={titleValue}
-            onChange={(e) => setTitleValue(e.target.value)}
-          />
-        </div>
-      )}
-      {!editing ? (
-        <button onClick={() => setEditing(true)}>Edit</button>
+          <button onClick={() => setEditing(true)}>Edit</button>
+        </>
       ) : (
         <>
-          <button onClick={removeElement}>Delete</button>
-          <button onClick={saveData}>Save</button>
+          <div>
+            <div className="time-edit">
+              <select
+                name="hour"
+                id="hour"
+                value={hourValue}
+                onChange={(e) => setHourValue(e.target.value)}
+              >
+                {hourEls}
+              </select>
+              <select
+                name="minute"
+                id="minute"
+                value={minuteValue}
+                onChange={(e) => setMintueValue(e.target.value)}
+              >
+                {minutesEls}
+              </select>
+              <select
+                name="ampm"
+                id="ampm"
+                value={amPmValue}
+                onChange={(e) => setAmPmValue(e.target.value)}
+              >
+                <option value="am">AM</option>
+                <option value="pm">PM</option>
+              </select>
+            </div>
+            <input
+              type="text"
+              id="title"
+              value={titleValue}
+              onChange={(e) => setTitleValue(e.target.value)}
+            />
+          </div>
+          <div className="buttons">
+            <button className="delete" onClick={removeElement}>
+              Delete
+            </button>
+            <button className="save" onClick={saveData}>
+              Save
+            </button>
+          </div>
         </>
       )}
     </article>

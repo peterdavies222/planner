@@ -132,7 +132,7 @@ form {
 
 .schedule__element {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
 
   &:not(:last-child) {
     padding-bottom: 1rem;
@@ -144,28 +144,52 @@ form {
     font-size: 0.75rem;
   }
 
-  // &__title {
-  //   overflow-wrap: break-word;
-  //   width: min-content;
-  // }
+  &__title,
+  & input[type="text"] {
+    overflow-wrap: break-word;
+    width: var(--max-width);
+  }
 
-  &__remove {
-    background: rgb(255, 255, 255);
-    border: none;
-    width: 1rem;
-    justify-self: end;
-    padding-inline: 1rem;
+  &__title {
+    margin-bottom: 0.5em;
+  }
+
+  .time-edit {
+    max-width: var(--max-width);
     display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 9999px;
-    border: 1px solid rgb(226, 226, 226);
-    cursor: pointer;
-    transition: all 0.2s;
-    aspect-ratio: 1;
+    gap: 0.25em;
+    margin-bottom: 0.5em;
+  }
 
-    &:hover {
-      background: rgb(226, 226, 226);
+  select {
+    border: 1px solid rgb(209, 209, 209);
+    border-radius: 5px;
+  }
+
+  input[type="text"] {
+    border: 1px solid rgb(209, 209, 209);
+    padding: 0.25em 0.5em;
+    border-radius: 5px;
+    margin-bottom: 0.5em;
+  }
+
+  .buttons {
+    display: flex;
+    gap: 0.5em;
+  }
+  button {
+    background: rgb(151, 184, 194);
+    padding: 0.25em 0.5em;
+    border-radius: 9999px;
+    border: none;
+    cursor: pointer;
+
+    &.save {
+      flex-grow: 1;
+    }
+
+    &.delete {
+      background: rgb(227, 139, 139);
     }
   }
 }

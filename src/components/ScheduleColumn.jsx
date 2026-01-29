@@ -1,6 +1,13 @@
 import ScheduleElement from "./ScheduleElement";
+import { useRef, useEffect } from "react";
 
 export default function ScheduleColumn(props) {
+  const gridRef = useRef();
+  useEffect(() => {
+    const gridWidth = gridRef.current.getBoundingClientRect().width;
+    gridRef.current.style.setProperty("--max-width", `${gridWidth}px`);
+  }, []);
+
   let scheduleElements;
   if (props.plans) {
     const orderedPlans = props.plans.sort(
@@ -19,7 +26,9 @@ export default function ScheduleColumn(props) {
   return (
     <div className="schedule__column">
       <p className="schedule__column__title">{props.day}</p>
-      <div className="schedule__column__grid">{scheduleElements}</div>
+      <div className="schedule__column__grid" ref={gridRef}>
+        {scheduleElements}
+      </div>
     </div>
   );
 }
