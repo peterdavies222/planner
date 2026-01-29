@@ -1,13 +1,18 @@
+import ScheduleElement from "./ScheduleElement";
+
 export default function ScheduleColumn(props) {
   let scheduleElements;
   if (props.plans) {
-    scheduleElements = props.plans.map((plan) => {
+    const orderedPlans = props.plans.sort(
+      (a, b) =>
+        a.hour +
+        (a.ampm === "pm" ? 12 : 0) +
+        a.minute / 100 -
+        (b.hour + (b.ampm === "pm" ? 12 : 0) + b.minute / 100),
+    );
+    scheduleElements = orderedPlans.map((plan) => {
       return (
-        <article className="schedule__element" key={plan.title}>
-          {/* <p className="schedule__element__time">{plan.time}</p> */}
-          <p className="schedule__element__title">{plan.title}</p>
-          <button className="schedule__element__remove">—</button>
-        </article>
+        <ScheduleElement plan={plan} dispatch={props.dispatch} key={plan.id} />
       );
     });
   }
