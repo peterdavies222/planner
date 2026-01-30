@@ -73,7 +73,7 @@ function App() {
     );
   });
 
-  const scheduleColumns = days.map((day) => {
+  const scheduleColumns = days.map((day, index) => {
     return (
       <ScheduleColumn
         key={day}

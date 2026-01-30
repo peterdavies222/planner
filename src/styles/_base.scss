@@ -104,20 +104,18 @@ form {
 
 .schedule {
   display: grid;
-  grid-template-columns: repeat(7, minmax(0, 1fr));
-  gap: 1rem;
+  grid-template-columns: repeat(7, 1fr);
 }
 
 .schedule__column {
-  border: 1px solid rgb(209, 209, 209);
-  background: rgb(246, 246, 246);
-  padding: 1rem;
-  border-radius: 1rem;
   display: grid;
-  gap: 1rem;
   grid-template-rows: auto 1fr;
   flex-shrink: 0;
   flex-grow: 0;
+
+  &:not(:last-of-type) {
+    border-right: 2px solid rgb(209, 209, 209);
+  }
 
   > * {
     max-width: 100%;
@@ -127,12 +125,16 @@ form {
 
   &__title {
     font-weight: bold;
+    border-bottom: 2px solid rgb(209, 209, 209);
+    width: 100%;
+    padding: 0px 1rem 1rem;
   }
 
   &__grid {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
+    padding: 1rem;
   }
 }
 
@@ -186,18 +188,22 @@ form {
     gap: 0.5em;
   }
   button {
-    background: rgb(151, 184, 194);
+    border: 1px solid rgb(151, 184, 194);
+    background: none;
     padding: 0.25em 0.5em;
     border-radius: 9999px;
-    border: none;
     cursor: pointer;
 
     &.save {
       flex-grow: 1;
+      border: none;
+      background: rgb(151, 184, 194);
     }
 
     &.delete {
-      background: rgb(227, 139, 139);
+      border: 1px solid rgb(227, 139, 139);
+      background: none;
+      color: rgb(92, 34, 34);
     }
   }
 }
